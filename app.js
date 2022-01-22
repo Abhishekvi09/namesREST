@@ -1,4 +1,4 @@
-
+ 
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -34,12 +34,12 @@ const AddSchema = {
 const Add = mongoose.model("Add", AddSchema);
 
 
-app.route("/Add")
+app.route("/Adds")
 
     .get(function (req, res) {
-        Add.find(function (err, foundAdd) {
+        Add.find(function (err, foundAdds) {
             if (!err) {
-                res.send(foundAdd);
+                res.send(foundAdds);
             } else {
                 res.send(err);
             }
@@ -64,13 +64,12 @@ app.route("/Add")
 
 
 
- app.route("/Add/:Addname")
+app.route("/Adds/:Addname")
 
-.get(function(req, res){
-
-  Add.findOne({Name: req.params.Addname}, function(err, foundAdd){
-    if (foundAdd) {
-      res.send(foundAdd);
+.get(function(req,res){
+    Add.findOne({Name:req.params.Addname}, function(err, foundAdds){
+    if (!err) {
+      res.send(foundAdds);
     } else {
       res.send("No matching that name was found.");
     }
@@ -84,3 +83,4 @@ app.route("/Add")
         app.listen(3000, function () {
             console.log("Server started on port 3000");
         });
+
